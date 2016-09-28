@@ -1,7 +1,7 @@
 <?php
 
 /**
- * ECSHOP 天工支付(银联)
+ * ECSHOP 天工收银(银联)
  * ============================================================================
  * * 版权所有 2005-2012 上海商派网络科技有限公司，并保留所有权利。
  * 网站地址: http://www.ecshop.com；
@@ -103,7 +103,7 @@ class tiangongcpb2c
         $param['amount'] = $order['order_amount'];
         $param['subject'] =iconv('GBK','UTF-8',$name);
         $param['metadata'] = "tiangongcpb2c";
-        //$param['notify_url'] = 'http://www.baidu.com';//支付成功后天工支付网关通知
+        //$param['notify_url'] = 'http://www.baidu.com';//支付成功后天工收银网关通知
         $param['notify_url'] = return_url(basename(__FILE__, '.php'));
         $param['client_ip'] = $_SERVER["REMOTE_ADDR"];
         $param['client_id'] = $payment['tiangongcpb2c_client_id'];

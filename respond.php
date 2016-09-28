@@ -38,7 +38,7 @@ if (empty($pay_code) && ($_REQUEST['ext1'] == 'shenzhou') && ($_REQUEST['ext2'] 
     $pay_code = 'shenzhou';
 }
 
-//获取天工支付方式
+//获取天工收银方式
 if (empty($pay_code) && !empty($_REQUEST['metadata']))
 {
     $pay_code = $_REQUEST['metadata'];
