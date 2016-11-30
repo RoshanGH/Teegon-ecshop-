@@ -169,15 +169,7 @@ class tiangongcpb2c
             order_paid($pay_id, 2);
             if(!empty($_POST))
             {
-                $tgarr = array(
-                    array("source_account"=>"main","target_account"=>"main","amount"=> $_GET['amount']),
-                );
-                $tgreturn = json_encode($tgarr);
-                $tgsign = md5($tgreturn.$payment['tiangongcpb2c_client_secret']);
-                header('Teegon-Rsp-Sign: '.$tgsign);
-                echo $tgreturn;
-                exit;
-            }
+            
             return true;
         }else{
             return false;
