@@ -160,19 +160,6 @@ class tiangongwx
         {
             /* 改变订单状态 */
             order_paid($pay_id, 2);
-                $tgarr = array(
-                    array("source_account"=>"main","target_account"=>"main","amount"=> $_GET['amount']),
-                );
-                $tgreturn = json_encode($tgarr);
-                $tgsign = md5($tgreturn.$payment['tiangongwx_client_secret']);
-                header('Teegon-Rsp-Sign: '.$tgsign);
-                echo $tgreturn;
-//        error_log(print_r($tgarr,1)."\n~~~~",3,"/ecshop/includes/modules/paymente/cshop.log");
-//        error_log(print_r($tgreturn,1)."\n~~~~",3,"/ecshop/includes/modules/payment/ecshop.log");
-//        error_log(print_r($tgsign,1)."\n~~~~",3,"/ecshop/includes/modules/payment/ecshop.log");
-//        error_log(print_r($_POST,1)."\n~~~~",3,"/ecshop/includes/modules/payment/ecshop.log");
-                exit;
-
             return true;
         }else{
             return false;
