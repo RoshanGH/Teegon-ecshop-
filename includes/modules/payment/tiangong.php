@@ -169,20 +169,6 @@ class tiangong
             order_paid($pay_id, 2);
             if(!empty($_POST))
             {
-                $tgarr = array(
-                    array("source_account"=>"main","target_account"=>"main","amount"=> $_GET['amount']),
-                );
-                $tgreturn = json_encode($tgarr);
-                $tgsign = md5($tgreturn.$payment['tiangong_client_secret']);
-                header('Teegon-Rsp-Sign: '.$tgsign);
-                echo $tgreturn;
-                exit;
-            }
-        //error_log(print_r($tgarr,1)."\n~~~~",3,"/Users/roshan/www/ecshop/admin/ecshop.log");
-        //error_log(print_r($tgreturn,1)."\n~~~~",3,"/Users/roshan/www/ecshop/admin/ecshop.log");
-        //error_log(print_r($tgsign,1)."\n~~~~",3,"/Users/roshan/www/ecshop/admin/ecshop.log");
-            //}
-
             return true;
         }else{
             return false;
