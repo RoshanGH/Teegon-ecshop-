@@ -102,7 +102,12 @@ class tiangongcpb2c
        // $param['return_url'] = 'http://www.qq.com';
         $param['amount'] = $order['order_amount'];
         $param['subject'] =iconv('GBK','UTF-8',$name);
-        $param['metadata'] = "tiangongcpb2c";
+        if(!$order['goods_amount'])
+        {
+            $param['metadata'] = "chongzhi";
+        }else{
+            $param['metadata'] = "";
+        }
         //$param['notify_url'] = 'http://www.baidu.com';//支付成功后天工收银网关通知
         $param['notify_url'] = return_url(basename(__FILE__, '.php'));
         $param['client_ip'] = $_SERVER["REMOTE_ADDR"];
@@ -147,14 +152,19 @@ class tiangongcpb2c
         //$_GET['data']=json_decode($_GET['data'],true);
 
         //验证签名
-       // echo "<pre/>";
+        // echo "<pre/>";
         unset($_GET['code']);
         $resign = $this->sign($_GET,$payment);
         //print_r($_GET);
         //print_r($resign);exit;
 
         //获取paid
-        $pay_id = get_order_id_by_sn($_GET['order_no']);
+        if($_GET['metadata'] == 'chongzhi')
+        {
+            $pay_id = get_order_id_by_sn($_GET['order_no'],true);
+        }else{
+            $pay_id = get_order_id_by_sn($_GET['order_no']);
+        }
 
         /* 检查支付的金额是否相符 */
         if (!check_money($pay_id, $_GET['amount']))
@@ -167,16 +177,10 @@ class tiangongcpb2c
         {
             /* 改变订单状态 */
             order_paid($pay_id, 2);
-            if(!empty($_POST))
-            {
-            
             return true;
         }else{
             return false;
         }
-
-
-
     }
 //tiangongcpb2c 加密算法
     public function sign($para_temp,$payment){
