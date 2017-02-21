@@ -101,7 +101,7 @@ class tiangongwx
         $param['return_url'] = return_url(basename(__FILE__, '.php'));
        // $param['return_url'] = 'http://www.qq.com';
         $param['amount'] = $order['order_amount'];
-        $param['subject'] =iconv('GBK','UTF-8',$name);
+        $param['subject'] =ecs_iconv('UTF8', $this->charset, $name);
         if(!$order['goods_amount'])
         {
             $param['metadata'] = "chongzhi";
